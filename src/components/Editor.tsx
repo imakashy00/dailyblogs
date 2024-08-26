@@ -42,6 +42,35 @@ export default function Editor() {
   const editor = useCreateBlockNote({
     schema,
     uploadFile,
+    initialContent: [
+      {
+        type: "heading",
+        content: "Hello Welcome 🙏",
+      },
+      {
+        type: "paragraph",
+        content: "Experiemnt with the editor",
+      },
+      {
+        type: "paragraph",
+        content:
+          "Type / commands to get suggestion for emoji texts, points image and select text to get floating toolbar drag and rop the element using lefy side hanlde ",
+      },
+      {
+        type: "paragraph",
+        content: "",
+      },
+      {
+        type: "paragraph",
+        content: [
+          {
+            type: "text",
+            text: "Feedback and Suggestion are welcome:      ✉️ yakashadav26@gmail.com",
+            styles: { bold: true },
+          },
+        ],
+      },
+    ],
   });
 
   // Renders the editor instance using a React component.

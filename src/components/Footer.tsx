@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../public/books.png";
@@ -13,28 +13,6 @@ import {
 } from "lucide-react";
 
 const Footer = () => {
-   const [email, setEmail] = useState("");
-   const [message, setMessage] = useState("");
-
-   const handleSubmit = async (e: React.FormEvent) => {
-     e.preventDefault();
-
-     try {
-       const res = await fetch("/api/save-email", {
-         method: "POST",
-         headers: {
-           "Content-Type": "application/json",
-         },
-         body: JSON.stringify({ email }),
-       });
-
-       const data = await res.json();
-       setMessage(data.message);
-     } catch (err) {
-       setMessage("Error saving email");
-     }
-   };
-
   return (
     <footer className="w-full py-10">
       <div className="flex justify-between">
@@ -67,11 +45,10 @@ const Footer = () => {
             className="py-3 px-5  mr-0 focus:outline-none text-sm  text-gray-600"
             type="email"
             placeholder="signup for launch discount"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
           />{" "}
-          <button type="submit" className="bg-yellow-400 py-3 px-5">Signup</button>
+          <button type="submit" className="bg-yellow-400 py-3 px-5">
+            Signup
+          </button>
         </div>
       </div>
       <hr className="mt-20 w-2/5 m-auto border-yellow-400" />
@@ -132,4 +109,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

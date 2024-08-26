@@ -28,8 +28,8 @@ const Landing = () => {
           <p className="text-3xl text-yellow-500 pl-2 flex items-center">DJ</p>
         </div>
         <div className="flex items-center text-gray-800  w-2/5  justify-center">
-          <Link className="py-2 px-4 bg-yellow-300 rounded " href={"/login"}>
-            Login
+          <Link className="py-2 px-4 bg-yellow-300 rounded " href={"/editor"}>
+            Editor
           </Link>
         </div>
       </div>
@@ -319,7 +319,9 @@ const Landing = () => {
       </div>
       {/* TODO: Add testimonoal */}
       {/* Footer */}
-      <div className="w-4/5 px-32 h-auto m-auto py-20"><Footer/></div>
+      <div className="w-4/5 px-32 h-auto m-auto py-20">
+        <Footer />
+      </div>
     </div>
   );
 };
