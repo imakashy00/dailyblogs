@@ -41,7 +41,7 @@ async function login(formdata: FormData) {
   try {
     await signIn('credentials',{
         redirect:false,
-        callbackUrl:'/',
+        callbackUrl:'/dashboard',
         email,
         password
     })
