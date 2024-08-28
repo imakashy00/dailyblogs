@@ -5,7 +5,7 @@ import { UserModel } from "@/model/userModel";
 import { redirect } from "next/navigation";
 import { hash } from "bcryptjs";
 import { CredentialsSignin } from "next-auth";
-import {signIn} from '@/auth'
+import { signIn } from "@/auth";
 
 async function register(formdata: FormData) {
   const username = formdata.get("username") as string;
@@ -39,18 +39,17 @@ async function login(formdata: FormData) {
   const password = formdata.get("password") as string;
 
   try {
-    await signIn('credentials',{
-        redirect:false,
-        callbackUrl:'/dashboard',
-        email,
-        password
-    })
-    
-  } catch (error:any) {
-    const someError = error as CredentialsSignin
-    return someError.cause
+    await signIn("credentials", {
+      redirect: false,
+      callbackUrl: "/",
+      email,
+      password,
+    });
+  } catch (error: any) {
+    const someError = error as CredentialsSignin;
+    return someError.cause;
   }
-  redirect('/')
+  redirect("/dashboard");
 }
 
-export { register,login };
+export { register, login };
