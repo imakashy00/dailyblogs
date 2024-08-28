@@ -25,7 +25,7 @@ const Landing = () => {
       <div className="flex mb-10 justify-between w-full sticky top-0 bg-white">
         <div className="flex  py-5 w-2/5 justify-center">
           <Image className="w-10 h-10" src={logo} alt="logo" />
-          <p className="text-3xl text-yellow-500 pl-2 flex items-center">DJ</p>
+          <p className="text-3xl text-yellow-500 pl-2 flex items-center">db</p>
         </div>
         <div className="flex items-center text-gray-800  w-2/5  justify-center">
           <Link className="py-2 px-4 bg-yellow-300 rounded " href={"/editor"}>
@@ -38,7 +38,7 @@ const Landing = () => {
           Every Day Matters,
         </h1>
         <h1 className="text-7xl flex pt-5 justify-center font-semibold text-gray-700  ">
-          Write it down <span className=" text-6xl">✍️</span>
+          write it down <span className=" text-6xl">✍️</span>
         </h1>
         <h3 className="text-gray-600 pt-7 flex justify-center">
           Journal every day because only the past helps you <br />
