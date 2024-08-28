@@ -6,14 +6,16 @@ import { FaGoogle } from "react-icons/fa6";
 import Link from "next/link";
 import React from "react";
 import { login } from "../../../action/user";
-import { auth,signIn } from "@/auth";
+import { auth, signIn } from "@/auth";
 import { redirect } from "next/navigation";
 
 export default async function SignIN() {
+  const session = await auth();
+  const user = session?.user;
+  if (user) {
+    redirect("/dashboard");
+  }
 
-  const session = await auth()
-  const user = session?.user
-  redirect('/dashboard')
   return (
     <div className="mt-10 max-w-md w-full mx-auto rounded md:rounded-2xl p-4 md:p-8 shadow-input bg-white border border-[#121212] dark:bg-black">
       <h2 className=" justify-center flex font-bold text-2xl">

@@ -28,8 +28,8 @@ const Landing = () => {
           <p className="text-3xl text-yellow-500 pl-2 flex items-center">db</p>
         </div>
         <div className="flex items-center text-gray-800  w-2/5  justify-center">
-          <Link className="py-2 px-4 bg-yellow-300 rounded " href={"/editor"}>
-            Editor
+          <Link className="py-2 px-4 bg-yellow-300 rounded " href={"/signin"}>
+            Login
           </Link>
         </div>
       </div>
@@ -47,7 +47,7 @@ const Landing = () => {
           {" "}
           become a better version of yourself...
         </h3>
-        <Link className="flex justify-center" href={"/write"}>
+        <Link className="flex justify-center" href={"/signin"}>
           {" "}
           <button className=" rounded bg-yellow-300 py-2 px-3 my-5 text-gray-800">
             Let&apos;s Start
