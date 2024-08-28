@@ -2,11 +2,7 @@
 
 import { BlockNoteSchema, defaultBlockSpecs } from "@blocknote/core";
 import "@blocknote/core/fonts/inter.css";
-import {
-  SuggestionMenuController,
-  getDefaultReactSlashMenuItems,
-  useCreateBlockNote,
-} from "@blocknote/react";
+import { useCreateBlockNote } from "@blocknote/react";
 import { BlockNoteView } from "@blocknote/mantine";
 import "@blocknote/mantine/style.css";
 
@@ -14,14 +10,14 @@ async function uploadFile(file: File) {
   const body = new FormData();
   body.append("file", file);
 
-  const ret = await fetch("https://tmpfiles.org/api/v1/upload", {
-    method: "POST",
-    body: body,
-  });
-  return (await ret.json()).data.url.replace(
-    "tmpfiles.org/",
-    "tmpfiles.org/dl/"
-  );
+  //   const ret = await fetch("https://tmpfiles.org/api/v1/upload", {
+  //     method: "POST",
+  //     body: body,
+  //   });
+  //   return (await ret.json()).data.url.replace(
+  //     "tmpfiles.org/",
+  //     "tmpfiles.org/dl/"
+  //   );
 }
 export default function Editor() {
   const schema = BlockNoteSchema.create({
@@ -36,7 +32,7 @@ export default function Editor() {
   // Creates a new editor instance.
   const editor = useCreateBlockNote({
     schema,
-    uploadFile,
+    // uploadFile,
   });
 
   // Renders the editor instance using a React component.
