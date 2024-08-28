@@ -13,7 +13,7 @@ export default async function SignIN() {
   const session = await auth();
   const user = session?.user;
   if (user) {
-    redirect("/dashboard");
+    redirect("/write");
   }
 
   return (

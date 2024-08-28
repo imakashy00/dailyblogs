@@ -49,7 +49,7 @@ async function login(formdata: FormData) {
     const someError = error as CredentialsSignin;
     return someError.cause;
   }
-  redirect("/dashboard");
+  redirect("/write");
 }
 
 export { register, login };
