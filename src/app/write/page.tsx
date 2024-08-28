@@ -5,5 +5,9 @@ const Editor = dynamic(() => import("../../components/Editor"), {
 });
 
 export default function WritePage() {
-  return <Editor />;
+  return (
+    <div className="mt-40 pl-80">
+      <Editor />
+    </div>
+  );
 }
