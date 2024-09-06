@@ -1,8 +1,8 @@
-import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { Lemonada } from "next/font/google";
 import "./globals.css";
-
+import AuthProvider from "@/context/AuthProvider";
+import {Toaster} from '../components/ui/toaster'
 const inter = Lemonada({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,10 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        {children}
-        <Analytics />
-      </body>
+      <AuthProvider>
+        <Toaster/>
+        <body className={inter.className}>{children}</body>
+      </AuthProvider>
     </html>
   );
 }

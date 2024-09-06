@@ -8,7 +8,6 @@ import {
   Boxes,
   ChartSpline,
   Check,
-  Command,
   Grip,
   ImageIcon,
   NotebookPen,
@@ -270,7 +269,7 @@ const Landing = () => {
                 <Zap className="mr-2 text-yellow-400 fill-yellow-400 border-1 border-yellow-400 border rounded-full size-8" />{" "}
                 Ultimate
               </h2>
-              <h3 className="py-5 text-2xl text-gray-700">$20 / month</h3>
+              <h3 className="py-5 text-2xl text-gray-700">$15 / month</h3>
               <h4 className="text-lg text-gray-500">What&apos;s Included:</h4>
               <ul className="mt-5">
                 <li className="my-5 flex text-gray-800">

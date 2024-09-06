@@ -1,16 +1,23 @@
+'use client'
 import React from "react";
 import { redirect } from "next/navigation";
-import { auth } from "@/auth";
+import { signOut } from "next-auth/react";
+import {useRouter} from 'next/navigation'
 
-export default async function Dashboard() {
-  const session = await auth();
-  const user = session?.user;
-  if (!user) {
-    return redirect("/signin");
-  }
+
+
+export default function Dashboard() {
+  const router = useRouter(); // Move the declaration of 'router' to the top
+  
   return (
-    <div className="flex justify-center items-center">
-      <h1 className="text-7xl text-gray-800">Dashboard</h1>
+    <div className=" flex border p-10  h-screen">
+      <button onClick={() => signOut()}>Sign out</button>
+      <h1 className="text-7xl text-red-800">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci
+        deserunt assumenda hic! Impedit, eaque provident? Soluta qui saepe,
+        consequatur culpa recusandae quos tempora est? Eveniet voluptatem esse
+        repellat nemo vero.
+      </h1>
     </div>
   );
 }
