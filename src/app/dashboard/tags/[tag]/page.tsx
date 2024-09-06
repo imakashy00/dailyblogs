@@ -43,11 +43,11 @@ const TagPage = ({ params }: { params: { tag: string } }) => {
       <div key={blockIndex}>
         {Array.isArray(block.content) &&
           block.content.map((innerContent, contentIndex) => (
-            <p key={contentIndex}>{`${
-              innerContent?.text?.length > 20
-                ? innerContent.text.slice(0, 20) + "..."
-                : innerContent?.text
-            }`}</p>
+            <p key={contentIndex}>
+              {(innerContent as any).text?.length > 20
+                ? (innerContent as any).text.slice(0, 20) + "..."
+                : (innerContent as any).text}
+            </p>
           ))}
       </div>
     ));
