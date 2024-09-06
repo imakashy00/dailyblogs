@@ -11,7 +11,6 @@ export default function Dashboard() {
   
   return (
     <div className=" flex border p-10  h-screen">
-      <button onClick={() => signOut()}>Sign out</button>
       <h1 className="text-7xl text-red-800">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci
         deserunt assumenda hic! Impedit, eaque provident? Soluta qui saepe,
