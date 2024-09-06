@@ -68,7 +68,7 @@ export async function GET(request: NextRequest) {
   //get the id of the journal from the searchParams
   const journalDate = searchParams.get("date");
   // console.log("Journal date-------------");
-  // console.log(journalDate);
+  console.log(journalDate);
   if (!journalDate) {
     return Response.json(
       { message: "Journal date is required" },
@@ -86,15 +86,14 @@ export async function GET(request: NextRequest) {
   //if journal is not found return 404 status code
   if (journal) {
     console.log(
-      // "Journal found------------------------------------------------------"
+      "Journal found------------------------------------------------------"
     );
     console.log(journal);
     return Response.json({ success: true, journal });
   } else if (
-    !journal &&(
     new Date(journalDate) <= new Date() &&
     new Date(journalDate) >= new Date("2024-09-01")
-  )) {
+  ) {
     // fill the journal in databse with the current date
     const newJournal = new JournalModel({
       tag: "skipped",
@@ -104,14 +103,14 @@ export async function GET(request: NextRequest) {
     });
     await newJournal.save();
     // refresh thes database
-    await dbConnect();
+    // await dbConnect();
     //find the journal by where date is as provided
-    const journal = await JournalModel.findOne({
+    const sameJournal = await JournalModel.findOne({
       createdAt: journalDate,
       user: session.user._id,
     });
 
-    return Response.json({ success: true, journal: journal });
+    return Response.json({ success: true, journal: sameJournal });
   } else {
     return Response.json(
       { success: false, message: "Journal not found" },
