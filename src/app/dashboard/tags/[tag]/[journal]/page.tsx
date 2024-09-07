@@ -70,6 +70,7 @@ const Jounal = ({searchParams}:{searchParams:{date:string}}) => {
       audio: undefined as any,
       file: undefined as any,
       video: undefined as any,
+      // image: undefined as any,
     },
   });
   async function uploadFile(file: File) {

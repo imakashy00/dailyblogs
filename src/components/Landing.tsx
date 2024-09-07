@@ -230,7 +230,7 @@ const Landing = () => {
                 <Zap className="mr-2 text-green-400 fill-green-400 border-1 border-green-400 border rounded-full size-8" />
                 Pro
               </h2>
-              <h3 className="py-5 text-2xl text-gray-700">$10 / month</h3>
+              <h3 className="py-5 text-2xl text-gray-700">$5 / month</h3>
               <h4 className="text-lg text-gray-500">What&apos;s Included:</h4>
               <ul className="mt-5">
                 <li className="my-5 flex text-gray-800">
@@ -245,16 +245,16 @@ const Landing = () => {
                   <Check className="text-blue-500 mr-5" />
                   Emoji
                 </li>
-                <li className="my-4 flex text-gray-800">
+                {/* <li className="my-4 flex text-gray-800">
                   <Check className="text-blue-500 mr-5" />1 image / Journal
-                </li>
+                </li> */}
                 <li className="my-4 flex text-gray-800">
                   <Check className="text-blue-500 mr-5" />
                   Analytics
                 </li>
                 <li className="my-4 flex text-gray-800">
                   <Check className="text-blue-500 mr-5" />
-                  10 Groups
+                  Groups your journals
                 </li>
               </ul>
             </div>
@@ -269,7 +269,7 @@ const Landing = () => {
                 <Zap className="mr-2 text-yellow-400 fill-yellow-400 border-1 border-yellow-400 border rounded-full size-8" />{" "}
                 Ultimate
               </h2>
-              <h3 className="py-5 text-2xl text-gray-700">$15 / month</h3>
+              <h3 className="py-5 text-2xl text-gray-700">$9 / month</h3>
               <h4 className="text-lg text-gray-500">What&apos;s Included:</h4>
               <ul className="mt-5">
                 <li className="my-5 flex text-gray-800">
@@ -286,28 +286,28 @@ const Landing = () => {
                 </li>
                 <li className="my-4 flex text-gray-800">
                   <Check className="text-blue-500 mr-5" />
-                  10 image / Journal
-                </li>
-                <li className="my-4 flex text-gray-800">
-                  <Check className="text-blue-500 mr-5" />
                   Analytics
                 </li>
                 <li className="my-4 flex text-gray-800">
                   <Check className="text-blue-500 mr-5" />
-                  Unlimited groups
+                  Group your journals
                 </li>
                 <li className="my-4 flex text-gray-800">
                   <Check className="text-blue-500 mr-5" />
-                  Audio
+                   Add images
                 </li>
                 <li className="my-4 flex text-gray-800">
+                  <Check className="text-blue-500 mr-5" />
+                  Add Audio
+                </li>
+                {/* <li className="my-4 flex text-gray-800">
                   <Check className="text-blue-500 mr-5" />
                   Customized background
                 </li>
                 <li className="my-4 flex text-gray-800">
                   <Check className="text-blue-500 mr-5" />
                   AI - Autocomplete and query
-                </li>
+                </li> */}
               </ul>
             </div>
             <button className="mt-auto bg-yellow-400 rounded-lg py-3 px-5">

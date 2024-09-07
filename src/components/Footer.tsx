@@ -14,8 +14,8 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="w-full py-10">
-      <div className="flex justify-between">
+    <footer className="w-full border py-10">
+      <div className="flex justify-between border">
         <div className="flex pr-20 pl-10">
           <Image
             className="w-10 flex  h-10  justify-center"
@@ -24,7 +24,7 @@ const Footer = () => {
           />
           <p className="my-3 ml-5 text-gray-800">write, to make it right!</p>
         </div>
-        <div className=" pr-20">
+        <div className=" pr-10">
           <Link
             href="/privacy-policy"
             className="text-gray-600 flex pt-3 hover:text-yellow-500"
@@ -32,7 +32,7 @@ const Footer = () => {
             Privacy Policy
           </Link>{" "}
         </div>
-        <div className=" pr-20">
+        <div className=" pr-10">
           <Link
             href="/terms-of-service"
             className="text-gray-600 flex pt-3 hover:text-yellow-500"
@@ -101,7 +101,7 @@ const Footer = () => {
           </li>
         </ul>
         <p className="text-sm flex justify-center text-gray-500">
-          © {new Date().getFullYear()} DJ. All rights reserved.
+          © {new Date().getFullYear()} db. All rights reserved.
         </p>
       </div>
     </footer>

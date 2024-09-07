@@ -107,6 +107,7 @@ const TextEditor: React.FC = () => {
       audio: undefined as any,
       file: undefined as any,
       video: undefined as any,
+      // image: undefined as any,
     },
   });
   const editor: BlockNoteEditor = useCreateBlockNote(
@@ -150,9 +151,10 @@ const TextEditor: React.FC = () => {
           type="text"
           placeholder=" tag for today"
           required
-          value ={tag}
+          value={tag}
           onChange={(e) => setTag(e.target.value)}
         />
+        <span className="text-3xl">😊</span>
         <Button
           className="bg-yellow-300 mr-9 text-gray-800 hover:bg-yellow-200"
           disabled={tag.trim() === ""}
