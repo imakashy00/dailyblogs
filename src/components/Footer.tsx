@@ -26,7 +26,7 @@ const Footer = () => {
         </div>
         <div className=" pr-10">
           <Link
-            href="/privacy-policy"
+            href="/privacy"
             className="text-gray-600 flex pt-3 hover:text-yellow-500"
           >
             Privacy Policy
