@@ -25,6 +25,7 @@ export async function GET(request: Request) {
     console.log(result); // TODO: remove this
     if (!result.success) {
       const usernameError = result.error.format().username?._errors || [];
+      console.log("usernameError-----------------");
       console.log(usernameError)
       return Response.json(
         {
@@ -58,7 +59,7 @@ export async function GET(request: Request) {
       },
       { status: 200 }
     );
-    console.log("object1234");
+    
   } catch (error: any) {
     console.log("Error in checkUsernameUnique", error);
     return Response.json({
