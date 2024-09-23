@@ -9,25 +9,28 @@ import { BlockNoteView } from "@blocknote/mantine";
 import { useCreateBlockNote } from "@blocknote/react";
 import { BlockNoteSchema, defaultBlockSpecs } from "@blocknote/core";
 import "@blocknote/mantine/style.css";
+import Link from "next/link";
+import Image from "next/image";
+import logo from "../../../../../../public/books.png"; // Adjust the path to your logo image
 const TextEditor = dynamic(() => import("@/components/TextEditor"), {
   ssr: false,
 });
 
 // { params }: { params: { date: string } }
 
-const Jounal = ({searchParams}:{searchParams:{date:string}}) => {
+const Jounal = ({ searchParams }: { searchParams: { date: string } }) => {
   const [date, setDate] = useState<string>(searchParams?.date);
   const [displayDate, setDisplaydate] = useState<string>("");
   const [initialdata, setInitialdata] = useState<PartialBlock[]>([]);
   const [tag, setTag] = useState<string>("");
   const [isLoading, setLoading] = useState(true);
 
-//   useEffect(() => {
-//     // Ensure that `params.date` exists before setting it
-//     if (searchParams?.date) {
-//       setDate(searchParams.date);
-//     }
-//   }, [searchParams]);
+  //   useEffect(() => {
+  //     // Ensure that `params.date` exists before setting it
+  //     if (searchParams?.date) {
+  //       setDate(searchParams.date);
+  //     }
+  //   }, [searchParams]);
 
   const saveToDatabase = async (newBlocks: PartialBlock[]) => {
     try {
@@ -100,34 +103,47 @@ const Jounal = ({searchParams}:{searchParams:{date:string}}) => {
   );
   if (isLoading) return <p>Loading...</p>;
   return (
-    <div className="rounded-xl border py-5 px-5 m-auto min-h-screen bg-white">
-      <div className="justify-around flex pt-2 mb-5 px-5 items-center">
-        <div className="flex w-1/4 space-x-2">
-          <div className="justify-center px-1 flex w-4/5">
-            {new Date(displayDate).toDateString()}
+    <div className="rounded-xl border sm:py-5 sm:px-5 m-auto min-h-screen bg-white">
+      <div className="sm:hidden flex justify-between px-5 py-3 bg-white w-full border-b  ">
+        <Link href={"/dashboard"}>
+          <div className="flex justify-around sm:mb-20  px-5 ">
+            <Image className="w-8 h-8" src={logo} alt="logo" />
           </div>
+        </Link>
+        <h1 className="pt-1 text-lg">Journal</h1>
+      </div>
+      <div className="justify-around flex sm:flex-row flex-col pt-2 mb-5 px-5 items-center">
+        <div className="flex justify-between  sm:w-auto w-full sm:px-auto px-4">
+          <div className="flex sm:w-1/4 space-x-2">
+            <div className="justify-center px-1 flex sm:w-4/5 sm:pt-auto pt-2">
+              {new Date(displayDate).toDateString()}
+            </div>
+          </div>
+
+          <Button
+            className="bg-yellow-300 sm:mr-9 text-gray-800 hover:bg-yellow-200"
+            disabled={tag.trim() === ""}
+            onClick={() => saveToDatabase(editor.document)}
+          >
+            Save
+          </Button>
         </div>
-        <input
-          className=" p-1 pl-2 w-2/4 border font-bold text-xl"
-          type="text"
-          placeholder=" tag for today"
-          required
-          value={tag}
-          onChange={(e) => setTag(e.target.value)}
-        />
-        <Button
-          className="bg-yellow-300 mr-9 text-gray-800 hover:bg-yellow-200"
-          disabled={tag.trim() === ""}
-          onClick={() => saveToDatabase(editor.document)}
-        >
-          Save
-        </Button>
+        <div className="m-auto sm:my-auto my-3">
+          <input
+            className=" p-1 pl-2 border font-bold text-xl"
+            type="text"
+            placeholder=" tag for today"
+            required
+            value={tag}
+            onChange={(e) => setTag(e.target.value)}
+          />
+        </div>
       </div>
       <BlockNoteView
         editor={editor}
         theme="light"
         editable={false}
-        className="-ml-5 py-5"
+        className="sm:-ml-5 -ml-3 sm:py-5 w-[400px]"
       />
     </div>
   );

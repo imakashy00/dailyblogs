@@ -6,7 +6,8 @@ import { BlockNoteEditor, PartialBlock } from "@blocknote/core";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-
+import Image from "next/image";
+import logo from "../../../../../public/books.png";
 const TagPage = ({ params }: { params: { tag: string } }) => {
   const router = useRouter();
   const [journals, setJournals] = useState<
@@ -67,11 +68,19 @@ const TagPage = ({ params }: { params: { tag: string } }) => {
   }
 
   return (
-    <div className="border  p-5 w-full m-auto min-h-screen">
-      <h1 className="text-3xl text-gray-800 justify-center flex">
+    <div className="sm:p-5 w-full m-auto min-h-screen">
+      <div className="sm:hidden flex justify-between px-5 py-3 bg-white w-full border-b  ">
+        <Link href={"/dashboard"}>
+          <div className="flex justify-around sm:mb-20  px-5 ">
+            <Image className="w-8 h-8" src={logo} alt="logo" />
+          </div>
+        </Link>
+        <h1 className="pt-1 text-lg">Tags</h1>
+      </div>
+      <h1 className="sm:text-3xl text-xl text-gray-800 justify-center p-5 flex">
         Journals for Tag: {params.tag}
       </h1>
-      <div className="my-5 grid grid-cols-3 gap-5 ">
+      <div className="sm:my-5 grid sm:grid-cols-3 gap-5 p-5 ">
         {journals.length > 0 ? (
           journals.map((journal, index) => (
             <div

@@ -5,6 +5,7 @@ export interface Journal extends Document {
   tag: string;  
   createdAt: Date;
   content: string;
+  mood: string;
   user: Types.ObjectId; // Add this if you plan to reference users
 }
 
@@ -13,6 +14,9 @@ export interface User extends Document {
   email: string;
   password: string;
   verifyToken: string;
+  currentStreak: number;
+  longestStreak: number;
+  totalWords: number;
   verifyTokenExpiry: Date;
   isVerified: boolean;
   journals: Types.ObjectId[]; // Array of references to Journal
@@ -24,6 +28,10 @@ const JournalSchema = new Schema<Journal>({
     required: true,
   },
   content: {
+    type: String,
+    required: true,
+  },
+  mood: {
     type: String,
     required: true,
   },

@@ -2,8 +2,11 @@
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { Minus, Plus, Search } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import logo from "../../../../public/books.png"; // Adjust the path to your logo image
 
 export default function Tags() {
   const [tags, setTags] = useState<[string]>([""]);
@@ -30,8 +33,16 @@ export default function Tags() {
     return <div>Loading...</div>;
   }
   return (
-    <div className="w-full p-10 border min-h-screen ">
-      <div className="flex items-center border-2 bg-white rounded-xl w-full mb-5 focus-within:border-yellow-400 p-2">
+    <div className="w-full  sm:p-10 h-auto ">
+      <div className="sm:hidden flex justify-between px-5 py-3 bg-white w-full border-b  ">
+        <Link href={"/dashboard"}>
+          <div className="flex justify-around sm:mb-20  px-5 ">
+            <Image className="w-8 h-8" src={logo} alt="logo" />
+          </div>
+        </Link>
+        <h1 className="pt-1 text-lg">Tags</h1>
+      </div>
+      <div className="flex items-center border-2 bg-white rounded-xl sm:w-full w-4/5 m-auto sm:mt-auto mt-5 sm:mb-5 focus-within:border-yellow-400 p-2">
         <Search className="text-gray-400" size={20} />
         <input
           className="w-full pl-2 focus:outline-none"
@@ -39,11 +50,11 @@ export default function Tags() {
           placeholder="Search"
         />
       </div>
-      <div className="grid grid-cols-3 gap-10 ">
+      <div className="grid sm:grid-cols-3 grid-cols-2 sm:gap-10 gap-2 sm:mt-auto mt-5 sm:px-auto px-5">
         {tags.map((tag, index) => (
           <div
             key={index}
-            className="border flex flex-col justify-around border-yellow-400 min-h-[200px] p-5 rounded-xl"
+            className="border flex flex-col justify-around border-yellow-400 sm:min-h-[200px] min-h-[150px] sm:p-5 p-2 rounded-xl items-center"
           >
             {tag}
             <Button

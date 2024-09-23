@@ -1,9 +1,10 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/options";
 import dbConnect from "@/lib/db";
-import { UserModel, JournalModel } from "@/model/userModel";
+import { JournalModel } from "@/model/userModel";
 import { User } from "next-auth";
 import { NextRequest } from "next/server";
+import getMood from "./getMood";
 
 //Post request to save the journal in JournalModel collection of database
 export async function POST(request: NextRequest) {
@@ -24,11 +25,17 @@ export async function POST(request: NextRequest) {
   //get the journal from the request body
   const { tag, content } = await request.json();
   // console.log("--------------JOURNAL--------------");
-  // console.log(tag, content);
+  console.log(tag, content);
+
+  // code for getting the mood from gemini
+  const mood:string = (await getMood(content)).trim();
+  console.log(mood);
+
   //create a new journal object
   const newJournal = new JournalModel({
     tag,
     content,
+    mood,
     createdAt: new Date().toDateString(),
     user: user._id,
   });
@@ -40,7 +47,7 @@ export async function POST(request: NextRequest) {
   if (journal) {
     await JournalModel.updateOne(
       { _id: journal._id },
-      { tag, content, createdAt: new Date().toDateString(), user: user._id }
+      { tag, content, mood, createdAt: new Date().toDateString(), user: user._id }
     );
   } else {
     await newJournal.save();
@@ -98,6 +105,7 @@ export async function GET(request: NextRequest) {
     const newJournal = new JournalModel({
       tag: "skipped",
       content: "[]",
+      mood: "idk",
       createdAt: new Date(journalDate).toDateString(),
       user: session.user._id,
     });

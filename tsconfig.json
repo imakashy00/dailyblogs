@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     "src/app/dashboard/write/page.tsx",
     "src/app/api/auth/[...nextauth]"
-  ],
+, "src/app/api/journal/getMood.ts"  ],
   "exclude": ["node_modules"]
 }

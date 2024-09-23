@@ -4,11 +4,14 @@ import { BlockNoteView } from "@blocknote/mantine";
 import { useCreateBlockNote } from "@blocknote/react";
 import { BlockNoteSchema, defaultBlockSpecs } from "@blocknote/core";
 import "@blocknote/mantine/style.css";
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import axios from "axios";
 import { redirect } from "next/navigation";
+import logo from "../../public/books.png";
+import Link from "next/link";
+import Image from "next/image";
 
 async function saveToStorage(newBlocks: PartialBlock[]) {
   // Retrieve the existing data from local storage.
@@ -95,8 +98,7 @@ const TextEditor: React.FC = () => {
     fetchFromDatabase();
     if (date !== new Date().toDateString()) {
       setEditable(false);
-    }
-    else{
+    } else {
       setEditable(true);
     }
   }, [date]);
@@ -126,9 +128,9 @@ const TextEditor: React.FC = () => {
 
   if (isLoading) return <p>Loading...</p>;
   return (
-    <div className="rounded-xl border py-5 px-5 m-auto min-h-screen bg-white">
-      <div className="justify-around flex pt-2 mb-5 px-5 items-center">
-        <div className="flex w-1/4 space-x-2">
+    <div className="sm:rounded-xl sm:border sm:py-5 sm:px-5 m-auto min-h-screen bg-white sm:w-auto w-[390px]  sm:text-base text-sm">
+      <div className="justify-around sm:w-auto w-full hidden sm:flex pt-2 sm:mb-5 sm:px-5 items-center">
+        <div className="flex sm:w-1/4 sm:space-x-2">
           {/* disable button if date is 1 sept 2024 */}
           <button
             onClick={previousDate}
@@ -137,7 +139,9 @@ const TextEditor: React.FC = () => {
           >
             <ChevronLeft />
           </button>
-          <div className="justify-center px-1 flex w-4/5">{date}</div>
+          <div className="justify-center sm:px-1 flex sm:w-4/5 border ">
+            {date}
+          </div>
           <button
             onClick={nextDate}
             disabled={date === new Date().toDateString()}
@@ -147,27 +151,74 @@ const TextEditor: React.FC = () => {
           </button>
         </div>
         <input
-          className=" p-1 pl-2 w-2/4 border font-bold text-xl"
+          className=" p-1 pl-2 w-2/4 border font-bold sm:text-xl "
           type="text"
           placeholder=" tag for today"
           required
           value={tag}
           onChange={(e) => setTag(e.target.value)}
         />
-        <span className="text-3xl">😊</span>
+        {/* <span className="text-3xl">😊</span> */}
         <Button
-          className="bg-yellow-300 mr-9 text-gray-800 hover:bg-yellow-200"
+          className="bg-yellow-300 sm:mr-9 text-gray-800 hover:bg-yellow-200 sm:w-auto w-[40px] sm:text-base text-xs"
           disabled={tag.trim() === ""}
           onClick={() => saveToDatabase(editor.document)}
         >
           Save
         </Button>
       </div>
+      {/* for small devices */}
+      <div className="sm:hidden flex flex-col p-2 w-full">
+        <div className="flex justify-around ">
+          <Link href={"/dashboard"}>
+            <div className="flex justify-around ">
+              <Image className="w-8 h-8" src={logo} alt="logo" />
+            </div>
+          </Link>
+          <div className="flex sm:w-1/4 sm:space-x-2">
+            {/* disable button if date is 1 sept 2024 */}
+            <button
+              onClick={previousDate}
+              disabled={date === new Date("2024-09-01").toDateString()}
+              title="Previous Date"
+            >
+              <ChevronLeft />
+            </button>
+            <div className="justify-center px-2 pt-2 flex sm:w-4/5  ">
+              {date}
+            </div>
+            <button
+              onClick={nextDate}
+              disabled={date === new Date().toDateString()}
+              title="Next Date"
+            >
+              <ChevronRight />
+            </button>
+          </div>
+          <Button
+            className="bg-yellow-300  text-gray-800 hover:bg-yellow-200 h-[30px] mt-1 w-[60px] sm:text-base text-sm"
+            disabled={tag.trim() === ""}
+            onClick={() => saveToDatabase(editor.document)}
+          >
+            Save
+          </Button>
+        </div>
+        <div className="flex w-4/5 m-auto my-3  mx-12">
+          <input
+            className="flex justify-center p-1 pl-2 w-full border font-semibold "
+            type="text"
+            placeholder=" tag for today"
+            required
+            value={tag}
+            onChange={(e) => setTag(e.target.value)}
+          />
+        </div>
+      </div>
       <BlockNoteView
         editor={editor}
         theme="light"
         editable={editable}
-        className="-ml-5 py-5"
+        className="sm:-ml-5 sm:py-5 sm:pr-auto -pr-[20px] "
       />
     </div>
   );
