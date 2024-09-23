@@ -9,8 +9,8 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 
 export default function Dashboard() {
-  const { data: session } = useSession();
-  const username = session?.user?.username || "";
+  // const { data: session } = useSession();
+  // const username = session?.user?.username || "";
   const router = useRouter(); // Move the declaration of 'router' to the top
   const [currentStreak, setCurrentStreak] = React.useState(0);
   const [longestStreak, setLongestStreak] = React.useState(0);
@@ -35,7 +35,7 @@ export default function Dashboard() {
             <Image className="w-8 h-8" src={logo} alt="logo" />
           </div>
         </Link>
-        <h1 className="pt-1 text-lg">{username}</h1>
+        <h1 className="pt-1 text-lg">dashboard</h1>
       </div>
       <div className="grid sm:grid-cols-3 sm:justify-between  sm:row-span-1 sm:w-auto w-full grid-cols-2 ">
         <div className=" p-5 ">current streak:11</div>
