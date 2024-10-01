@@ -8,9 +8,9 @@ import React, { useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { useToast } from "@/hooks/use-toast";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod"; // Add this line
+import { zodResolver } from "@hookform/resolvers/zod";
 import axios, { AxiosError } from "axios";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { SignUpSchema } from "@/schemas/signUpSchemas";
 import { ApiResponse } from "@/types/apiResponse";
 import {
@@ -19,23 +19,22 @@ import {
   FormField,
   FormLabel,
   FormItem,
-  FormDescription,
   FormMessage,
 } from "@/components/ui/form";
 import { Loader2 } from "lucide-react";
 import { useSession } from "next-auth/react";
 
 export default function SignUp() {
-  // redirect signedin users to dashboard
-  const router = useRouter(); // Move the declaration of 'router' to the top
-
+  const router = useRouter();
   const { data: session } = useSession();
 
-  // find if session. user is present redirect to dashboard by finding emial from session
-  if (session?.user) {
-    console.log(session.user.email);
-    router.replace("/dashboard");
-  }
+  // Redirect signed-in users to the dashboard
+  useEffect(() => {
+    if (session?.user) {
+      console.log(session.user.email);
+      router.replace("/dashboard");
+    }
+  }, [session, router]);
 
   const [username, setUsername] = useState("");
   const [success, setSuccess] = useState(false);
@@ -47,7 +46,7 @@ export default function SignUp() {
   }, 500);
   const { toast } = useToast();
 
-  // zod validation
+  // Zod validation
   const form = useForm<z.infer<typeof SignUpSchema>>({
     resolver: zodResolver(SignUpSchema),
     defaultValues: {
@@ -74,7 +73,6 @@ export default function SignUp() {
           setUsernameMessage(
             axiosError.response?.data.message ?? "An error occurred"
           );
-          //explain meaning of ?? operator - it is a nullish coalescing operator that returns the right hand side if the left hand side is null or undefined
         } finally {
           setIsCheckingUsername(false);
         }
@@ -110,7 +108,7 @@ export default function SignUp() {
   };
 
   return (
-    <div className="flex flex-col space-y-6  justify-center items-center min-h-screen ">
+    <div className="flex flex-col space-y-6 justify-center items-center min-h-screen">
       <div className="w-full max-w-md space-y-8 rounded-lg shadow-md">
         <h2 className="font-bold text-2xl text-neutral-800">
           Welcome to Dailyblogs 🙏
@@ -119,7 +117,6 @@ export default function SignUp() {
           SignUp for your documentation journey
         </p>
 
-        {/* ...form is coming from useForm hook declared above */}
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
@@ -128,14 +125,14 @@ export default function SignUp() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="flex">
-                    username{" "}
-                    <span className="mx-5 -mt-1 ">
+                    Username{" "}
+                    <span className="mx-5 -mt-1">
                       {isCheckingUsername && (
                         <Loader2 className="animate-spin" />
                       )}
                       <p
                         className={`text-sm ${
-                          success === true ? "text-green-500" : "text-red-500"
+                          success ? "text-green-500" : "text-red-500"
                         }`}
                       >
                         {usernameMessage}
@@ -153,7 +150,6 @@ export default function SignUp() {
                       type="text"
                     />
                   </FormControl>
-
                   <FormMessage />
                 </FormItem>
               )}
@@ -165,15 +161,7 @@ export default function SignUp() {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="email"
-                      type="text"
-                      {...field}
-                      // onChange={(e) => {
-                      //   field.onChange(e);
-                      //   setUsername(e.target.value);
-                      // }} // this is not needed as we are not checking email uniqueness as username 🦄
-                    />
+                    <Input placeholder="email" type="text" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -186,15 +174,7 @@ export default function SignUp() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="********"
-                      type="password"
-                      {...field}
-                      // onChange={(e) => {
-                      //   field.onChange(e);
-                      //   setUsername(e.target.value);
-                      // }} // this is not needed as we are not checking password uniqueness as username 🦄
-                    />
+                    <Input placeholder="********" type="password" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
